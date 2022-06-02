@@ -1,0 +1,1289 @@
+
+
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Bootstrap Countdown</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+
+    <meta charset="utf-8">
+    <meta content=" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+
+
+    <script type="text/javascript" src="/js/lib/dummy.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+
+    <style>
+        html {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            -webkit-font-smoothing: subpixel-antialiased;
+            -moz-osx-font-smoothing: subpixel-antialiased;
+        }
+        html body {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+            line-height: 1.5;
+            overflow: hidden;
+            -webkit-transition: none;
+            -moz-transition: none;
+            -o-transition: none;
+            transition: none;
+        }
+        html #app {
+            position: relative;
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            flex-flow: row wrap;
+            font-size: 0;
+            overflow: auto;
+            z-index: 1;
+            justify-content: center;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: inherit;
+            background: none;
+            border: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+            -moz-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+            -o-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+            transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 200ms;
+        }
+        .grid {
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .grid.cards > *,
+        .grid.spacebetween > * {
+            margin: 1rem;
+        }
+        .grid.row-wrap {
+            flex-flow: row wrap;
+        }
+        .grid.row-nowarp {
+            flex-flow: row nowrap;
+        }
+        .grid.column-wrap {
+            flex-flow: column wrap;
+        }
+        .grid.column-nowrap {
+            flex-flow: column nowrap;
+        }
+        .grid.reverse-row-wrap {
+            flex-flow: row wrap;
+        }
+        .grid.reverse-row-nowarp {
+            flex-flow: row nowrap;
+        }
+        .grid.reverse-column-wrap {
+            flex-flow: column wrap;
+        }
+        .grid.reverse-column-nowrap {
+            flex-flow: column nowrap;
+        }
+        .grid.adapt {
+            flex-grow: 1;
+        }
+        .grid.adapt-items > * {
+            flex-grow: 1;
+        }
+        .grid.decrease {
+            flex-shrink: 1;
+        }
+        .grid.decrease-items > * {
+            flex-shrink: 1;
+        }
+        .grid.dont-adapt {
+            flex-grow: 0;
+        }
+        .grid.dont-adapt-items > * {
+            flex-grow: 0;
+        }
+        .grid.dont-decrease {
+            flex-shrink: 0;
+        }
+        .grid.dont-decrease-items > * {
+            flex-shrink: 0;
+        }
+        .grid.flex-start-content {
+            justify-content: flex-start;
+            align-content: flex-start;
+            align-items: flex-start;
+        }
+        .grid.flex-start-content-self {
+            justify-content: flex-start;
+            align-content: flex-start;
+            align-self: flex-start;
+        }
+        .grid.center-content {
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        .grid.center-content-self {
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        .grid.stretch-items {
+            align-items: stretch;
+        }
+        .single > *,
+        .single {
+            flex: 1 0 100%;
+        }
+        .halfs > *,
+        .half {
+            flex-basis: calc(100% / 2);
+        }
+        .thirds > *,
+        .third {
+            flex-basis: calc(100% / 3);
+        }
+        .fourths > *,
+        .fourth {
+            flex-basis: calc(100% / 4);
+        }
+        .fifths > *,
+        .fifth {
+            flex-basis: calc(100% / 5);
+        }
+        .sixths > *,
+        .sixth {
+            flex-basis: calc(100% / 6);
+        }
+        .sevenths > *,
+        .seventh {
+            flex-basis: calc(100% / 7);
+        }
+        .eigths > *,
+        .eigth {
+            flex-basis: calc(100% / 8);
+        }
+        .disable-marker {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        span,
+        input,
+        button,
+        a,
+        q,
+        p,
+        b,
+        pre,
+        code,
+        i,
+        textarea,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: 400;
+        }
+        span,
+        input,
+        button,
+        a,
+        q,
+        p,
+        b,
+        pre,
+        code,
+        i,
+        textarea,
+        label {
+            font-size: 1rem;
+        }
+        span,
+        input,
+        q,
+        p,
+        b,
+        pre,
+        code,
+        i,
+        label {
+            -webkit-transition: none;
+            -moz-transition: none;
+            -o-transition: none;
+            transition: none;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        h2 {
+            font-size: 2rem;
+        }
+        h3 {
+            font-size: 1.75rem;
+        }
+        h4 {
+            font-size: 1.5rem;
+        }
+        h5 {
+            font-size: 1.25rem;
+        }
+        h6 {
+            font-size: 1.15rem;
+        }
+        .subtitle {
+            position: relative;
+            color: rgba(0,0,0,0.25);
+            line-height: 1;
+        }
+        .subtitle-h1 {
+            font-size: 2.1rem;
+            top: -0.21rem;
+        }
+        .subtitle-h2 {
+            font-size: 1.2rem;
+            top: -0.12rem;
+        }
+        .subtitle-h3 {
+            font-size: 0.875rem;
+            top: -0.0875rem;
+        }
+        .subtitle-h4 {
+            font-size: 0.6rem;
+            top: -0.06rem;
+        }
+        .subtitle-h5 {
+            font-size: 0.5rem;
+            top: -0.05rem;
+        }
+        .subtitle-h6 {
+            font-size: 0.46rem;
+            top: -0.046rem;
+        }
+        hr {
+            width: calc(100% - 2rem);
+            margin: 2rem 1rem;
+            border: none;
+            border-bottom: solid 1px;
+        }
+        .card,
+        .cards > * {
+            padding: 1rem;
+            flex: 0 0 auto;
+            box-shadow: 0 0.1rem 1rem rgba(0,0,0,0.1), 0 0 0.5rem rgba(0,0,0,0.1);
+            z-index: 2;
+            overflow: auto;
+            border-radius: 0.2rem;
+            background-color: #fff;
+        }
+        .card.hoverable:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .card.clickable {
+            cursor: pointer;
+        }
+        .card.clickable:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .card.clickable:active,
+        .card.clickable:focus {
+            transform: scale(1.06);
+            box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            z-index: 3;
+        }
+        .cards.hoverable > *:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .cards.clickable > * {
+            cursor: pointer;
+        }
+        .cards.clickable > *:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+        .cards.clickable > *:active,
+        .cards.clickable > *:focus {
+            transform: scale(1.06);
+            box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            z-index: 3;
+        }
+        .cards.fixed-height > * {
+            position: relative;
+            overflow: auto;
+        }
+        .cards.halfs > *,
+        .cards .half {
+            flex-basis: calc(100% / 2 - 2rem);
+        }
+        .cards.thirds > *,
+        .cards .third {
+            flex-basis: calc(100% / 3 - 2rem);
+        }
+        .cards.fourths > *,
+        .cards .fourth {
+            flex-basis: calc(100% / 4 - 2rem);
+        }
+        .cards.fifths > *,
+        .cards .fifth {
+            flex-basis: calc(100% / 5 - 2rem);
+        }
+        .cards.sixths > *,
+        .cards .sixth {
+            flex-basis: calc(100% / 6 - 2rem);
+        }
+        .cards.sevenths > *,
+        .cards .seventh {
+            flex-basis: calc(100% / 7 - 2rem);
+        }
+        .cards.eigths > *,
+        .cards .eigth {
+            flex-basis: calc(100% / 8 - 2rem);
+        }
+        .topic {
+            position: relative;
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            margin: 1rem;
+            flex-flow: row wrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .topic > * {
+            flex: 1 0 100%;
+        }
+        .topic h3 {
+            font-weight: 100;
+            text-transform: uppercase;
+        }
+        .checkpoint {
+            display: -webkit-flex;
+            display: -webkit-box;
+            display: -moz-box;
+            display: flex;
+            margin: 1rem;
+            flex: 1 1 100%;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        .checkpoint:before,
+        .checkpoint:after {
+            content: '';
+            margin: 0 1rem;
+            flex: 1 1 auto;
+            border-bottom: solid 0.1rem;
+        }
+        .weekly-todos {
+            flex-flow: row nowrap;
+            flex: 1 1 100%;
+        }
+        .weekly-todos > * {
+            height: 100%;
+            flex: 1 0 calc(100% / 7 - 2rem);
+        }
+        .weekly-todos > * > * {
+            margin: 0.5rem !important;
+            flex: 1 1 auto;
+        }
+        .sortable-animation > * {
+            transform: translate3d(0, 0, 0);
+        }
+        .sortableCards-move {
+            -webkit-transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            -moz-transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            -o-transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            transition: transform cubic-bezier(0.22, 0.61, 0.36, 1) 500ms;
+            background-color: #f00;
+        }
+        .sortableCards-enter,
+        .sortableCards-leave-to {
+            transition: 5s;
+            opacity: 0;
+        }
+        .draggable-source--is-dragging {
+            opacity: 0.3;
+        }
+        .draggable-container--over {
+            animation: draggablePulseBg cubic-bezier(0.22, 0.61, 0.36, 1) 1500ms infinite;
+        }
+        .draggable-mirror {
+            position: absolute;
+            padding: 1rem;
+            background-color: #fff;
+            -webkit-transition: all 0ms;
+            -moz-transition: all 0ms;
+            -o-transition: all 0ms;
+            transition: all 0ms;
+            overflow: auto;
+            box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            border-radius: 0.2rem;
+            z-index: 10;
+            cursor: move;
+            -webkit-transition: top 0ms left 0ms;
+            -moz-transition: top 0ms left 0ms;
+            -o-transition: top 0ms left 0ms;
+            transition: top 0ms left 0ms;
+        }
+        .draggable-source--placed {
+            animation: placedItem cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s;
+        }
+        .sortableCards-enter-active,
+        .sortableCards-leave-to {
+            opacity: 0;
+        }
+        .sortableCards-leave-active {
+            position: absolute;
+        }
+        @-moz-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @-webkit-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @-o-keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @keyframes draggablePulseBg {
+            0% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+            35% {
+                background-color: rgba(0,0,0,0.05);
+                outline: solid 0.1rem rgba(0,0,0,0.1);
+            }
+            100% {
+                background-color: transparent;
+                outline: solid 0.1rem transparent;
+            }
+        }
+        @-moz-keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+        @-webkit-keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+        @-o-keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+        @keyframes placedItem {
+            from {
+                transform: scale(1.065);
+                box-shadow: 0 0.25rem 2rem rgba(0,0,0,0.25), 0 0.1rem 0.5rem rgba(0,0,0,0.15);
+            }
+            to {
+                transform: scale(1);
+                box-shadow: 0 0.4rem 3rem rgba(0,0,0,0.35), 0 0.1rem 0.5rem rgba(0,0,0,0.2);
+            }
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+    <style id="compiled-css" type="text/css">
+
+
+        /*
+  *
+  * ==================================================
+  * UNNECESSARY STYLE - JUST TO MAKE IT LOOKS NICE
+  * ==================================================
+  *
+  */
+        .countdown {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .countdown span {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            font-size: 3rem;
+            margin-left: 0.8rem;
+        }
+
+        .countdown span:first-of-type {
+            margin-left: 0;
+        }
+
+        .countdown-circles {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .countdown-circles span {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown-circles span:first-of-type {
+            margin-left: 0;
+        }
+
+
+        /*
+        *
+        * ==================================================
+        * FOR DEMO PURPOSES
+        * ==================================================
+        *
+        */
+        body {
+            min-height: 100vh;
+        }
+
+        .bg-gradient-1 {
+            background: #7f7fd5;
+            background: -webkit-linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+            background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+        }
+
+        .bg-gradient-2 {
+            background: #654ea3;
+            background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
+            background: linear-gradient(to right, #654ea3, #eaafc8);
+        }
+
+        .bg-gradient-3 {
+            background: #ff416c;
+            background: -webkit-linear-gradient(to right, #ff416c, #ff4b2b);
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+        }
+
+        .bg-gradient-4 {
+            background: #007991;
+            background: -webkit-linear-gradient(to right, #007991, #78ffd6);
+            background: linear-gradient(to right, #007991, #78ffd6);
+        }
+
+        .rounded {
+            border-radius: 1rem !important;
+        }
+
+        .btn-demo {
+            padding: 0.5rem 2rem !important;
+            border-radius: 30rem !important;
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold !important;
+        }
+
+        .btn-demo:hover, .btn-demo:focus {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* EOS */
+    </style>
+
+    <script id="insert"></script>
+
+
+    <script src="https://codepen.io/DanielSharkov/embed/bayXwW/js/stringify.js?42b5b06fd854096651331d01e9953ced3e34ca93" charset="utf-8"></script>
+    <script>
+        const customConsole = (w) => {
+            const pushToConsole = (payload, type) => {
+                w.parent.postMessage({
+                    console: {
+                        payload: stringify(payload),
+                        type:    type
+                    }
+                }, "*")
+            }
+
+            w.onerror = (message, url, line, column) => {
+                // the line needs to correspond with the editor panel
+                // unfortunately this number needs to be altered every time this view is changed
+                line = line - 70
+                if (line < 0){
+                    pushToConsole(message, "error")
+                } else {
+                    pushToConsole(`[${line}:${column}] ${message}`, "error")
+                }
+            }
+
+            let console = (function(systemConsole){
+                return {
+                    log: function(){
+                        let args = Array.from(arguments)
+                        pushToConsole(args, "log")
+                        systemConsole.log.apply(this, args)
+                    },
+                    info: function(){
+                        let args = Array.from(arguments)
+                        pushToConsole(args, "info")
+                        systemConsole.info.apply(this, args)
+                    },
+                    warn: function(){
+                        let args = Array.from(arguments)
+                        pushToConsole(args, "warn")
+                        systemConsole.warn.apply(this, args)
+                    },
+                    error: function(){
+                        let args = Array.from(arguments)
+                        pushToConsole(args, "error")
+                        systemConsole.error.apply(this, args)
+                    },
+                    system: function(arg){
+                        pushToConsole(arg, "system")
+                    },
+                    clear: function(){
+                        systemConsole.clear.apply(this, {})
+                    },
+                    time: function(){
+                        let args = Array.from(arguments)
+                        systemConsole.time.apply(this, args)
+                    },
+                    assert: function(assertion, label){
+                        if (!assertion){
+                            pushToConsole(label, "log")
+                        }
+
+                        let args = Array.from(arguments)
+                        systemConsole.assert.apply(this, args)
+                    }
+                }
+            }(window.console))
+
+            window.console = { ...window.console, ...console }
+
+            console.system("Running fiddle")
+        }
+
+        if (window.parent){
+            customConsole(window)
+        }
+    </script>
+</head>
+<body>
+<div class="container py-5">
+    <!-- For demo purpose-->
+    <header class="text-center">
+        <h1 class="display-4 mb-4">Pitch Planning Meeting</h1>
+<!--        <p class="font-italic text-muted mb-0">Using Bootstrap 4 and-->
+<!--            <a href="http://hilios.github.io/jQuery.countdown/" class="text-muted">-->
+<!--                <u>jQuery Countdown</u></a>, Build nicely styled countdowns.</p>-->
+<!--        <p class="font-italic text-muted">Snippet by-->
+<!--            <a href="https://bootstrapious.com" class="text-muted">-->
+<!--                <u>Bootstrapious</u>-->
+<!--            </a>-->
+<!--        </p>-->
+    </header>
+    <div id="app"><div class="topic"><h1>Shopify draggable example</h1> <h3>I'm not longer supporting this pen</h3></div> <h2 class="checkpoint">Swappable</h2> <div class="grid single flex-start-content halfs"><div swappable="" class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div swapitem=""><h3>1</h3></div><div swapitem=""><h3>2</h3></div><div swapitem=""><h3>3</h3></div></div> <div swappable="" class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div swapitem=""><h3>1</h3></div><div swapitem=""><h3>2</h3></div><div swapitem=""><h3>3</h3></div><div swapitem=""><h3>4</h3></div><div swapitem=""><h3>5</h3></div><div swapitem=""><h3>6</h3></div><div swapitem=""><h3>7</h3></div></div></div> <h2 class="checkpoint">Sortable</h2> <div class="grid single flex-start-content halfs"><div sortable="sortable" class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem=""><h3>1</h3></div><div sortitem=""><h3>2</h3></div><div sortitem=""><h3>3</h3></div><div sortitem=""><h3>4</h3></div><div sortitem=""><h3>5</h3></div><div sortitem=""><h3>6</h3></div><div sortitem=""><h3>7</h3></div></div> <div sortable="sortable" class="
+			grid single fifths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem=""><h3>1</h3></div><div sortitem=""><h3>2</h3></div><div sortitem=""><h3>3</h3></div><div sortitem=""><h3>4</h3></div><div sortitem=""><h3>5</h3></div><div sortitem=""><h3>6</h3></div><div sortitem=""><h3>7</h3></div></div></div> <h2 class="checkpoint">Weekly todos</h2> <div class="grid flex-start-content weekly-todos"><div sortable="sortable" class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem="" style="background-color: rgb(239, 154, 154);"><p>Clean bedroom</p></div><div sortitem="" style="background-color: rgb(244, 143, 177);"><p>clean living room</p></div></div><div sortable="sortable" class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem="" style="background-color: rgb(206, 147, 216);"><p>Clean kitchen</p></div><div sortitem="" style="background-color: rgb(144, 202, 249);"><p>Take out trash</p></div><div sortitem="" style="background-color: rgb(128, 222, 234);"><p>Try out cake recipe</p></div></div><div sortable="sortable" class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"></div><div sortable="sortable" class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem="" style="background-color: rgb(128, 203, 196);"><p>Get done homework</p></div></div><div sortable="sortable" class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem="" style="background-color: rgb(165, 214, 167);"><p>Learn for maths</p></div><div sortitem="" style="background-color: rgb(197, 225, 165);"><p>Learn for chemistry</p></div></div><div sortable="sortable" class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem="" style="background-color: rgb(230, 238, 156);"><p>Do this</p></div><div sortitem="" style="background-color: rgb(255, 224, 130);"><p>Do that</p></div><div sortitem="" style="background-color: rgb(255, 204, 128);"><p>Do whatever you said</p></div></div><div sortable="sortable" class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"><div sortitem="" style="background-color: rgb(255, 171, 145);"><p>Do nothing!</p></div></div></div></div>
+
+
+
+    <div id="app">
+        <div class="topic">
+            <h1>Shopify draggable example</h1>
+            <h3>I'm not longer supporting this pen</h3>
+        </div>
+
+        <h2 class="checkpoint">Swappable</h2>
+        <div class="grid single flex-start-content halfs">
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              swappable>
+                <div
+                        v-for="(card, index) in 3"
+                        :key="index"
+                        swapItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              swappable>
+                <div
+                        v-for="(card, index) in coloredCards"
+                        :key="index"
+                        :style="{ backgroundColor: card.color }"
+                        swapItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+        </div>
+
+        <h2 class="checkpoint">Sortable</h2>
+        <div class="grid single flex-start-content halfs">
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fourths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <div
+                        v-for="(_, index) in 7"
+                        :key="index"
+                        sortItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+            <transition-group tag="div"
+                              name="sortableCards"
+                              class="
+			grid single fifths
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <div
+                        v-for="(card, index) in coloredCards"
+                        :key="index"
+                        :style="{ backgroundColor: card.color }"
+                        sortItem>
+                    <h3>{{ index+1 }}</h3>
+                </div>
+            </transition-group>
+        </div>
+
+        <h2 class="checkpoint">Weekly todos</h2>
+        <div class="grid flex-start-content weekly-todos">
+            <transition-group tag="div"
+                              v-for="(weekDay, weekIndex) in weeklyTodos"
+                              name="sortableCards"
+                              class="
+			grid
+			flex-start-content
+			disable-marker
+			cards clickable
+			sortable-animation
+		"
+                              sortable>
+                <p>Test</p>
+                <div
+                        v-for="(todo, todoIndex) in weekDay"
+                        :key="todoIndex"
+                        :style="{ backgroundColor: todo.color }"
+                        sortItem>
+                    <p>{{ todo.todo }}</p>
+                </div>
+            </transition-group>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+
+            <!-- CHECKBOX LIST -->
+            <div class="card rounded border-0 shadow-sm position-relative">
+                <div class="card-body p-5">
+                    <div class="d-flex align-items-center mb-4 pb-4 border-bottom"><i class="far fa-calendar-alt fa-3x"></i>
+                        <div class="ms-3">
+                            <h4 class="text-uppercase fw-weight-bold mb-0">Wednesday</h4>
+                            <p class="text-gray fst-italic mb-0">05 December 2020</p>
+                        </div>
+                    </div>
+                    <p>
+                    <ul>
+                        <li><a href="https://airwallex.atlassian.net/wiki/spaces/~273806565/pages/2647261472/Pitch+Planning+Meeting">https://airwallex.atlassian.net/Pitch+Planning+Meeting</a></li>
+                        <li><a href="https://airwallex.zoom.com/j/97685254119">https://airwallex.zoom.com/j/97685254119</a></li>
+                    </ul>
+                    </p>
+<!--                    <div class="form-check mb-3">-->
+<!--                        <input class="form-check-input" id="flexCheck1" type="checkbox" checked>-->
+<!--                        <label class="form-check-label" for="flexCheck1"><span class="fst-italic pl-1">Buy a new sweatshirt</span></label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check mb-3">-->
+<!--                        <input class="form-check-input" id="flexChec2" type="checkbox">-->
+<!--                        <label class="form-check-label" for="flexChec2"><span class="fst-italic pl-1">Try not to fall asleep</span></label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check mb-3">-->
+<!--                        <input class="form-check-input" id="flexCheck3" type="checkbox">-->
+<!--                        <label class="form-check-label" for="flexCheck3"><span class="fst-italic pl-1">Begin QA for the product</span></label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check mb-3">-->
+<!--                        <input class="form-check-input" id="flexCheck4" type="checkbox">-->
+<!--                        <label class="form-check-label" for="flexCheck4"><span class="fst-italic pl-1">Go for a long walk</span></label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check mb-3">-->
+<!--                        <input class="form-check-input" id="flexCheck5" type="checkbox">-->
+<!--                        <label class="form-check-label" for="flexCheck5"><span class="fst-italic pl-1">Pay for the new shoppings</span></label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check mb-3">-->
+<!--                        <input class="form-check-input" id="flexCheck6" type="checkbox">-->
+<!--                        <label class="form-check-label" for="flexCheck6"><span class="fst-italic pl-1">Buy a new sweatshirt</span></label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check mb-3">-->
+<!--                        <input class="form-check-input" id="flexCheck7" type="checkbox">-->
+<!--                        <label class="form-check-label" for="flexCheck7"><span class="fst-italic pl-1">Go for a long walk</span></label>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+
+<!--                &lt;!&ndash; Countdown 1&ndash;&gt;-->
+<!--                <div class="rounded bg-gradient-1 text-white shadow p-5 text-center mb-5">-->
+<!--                    <p class="mb-4 font-weight-bold text-uppercase">New year's eve in</p>-->
+<!--                    <div id="clock-b" class="countdown-circles d-flex flex-wrap justify-content-center pt-4"></div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Countdown 2&ndash;&gt;-->
+<!--                <div class="rounded bg-gradient-2 text-white shadow p-5 text-center mb-5">-->
+
+
+<!--                    <div id="clock-a" class="countdown pt-4"></div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Countdown 3&ndash;&gt;-->
+<!--                <div class="rounded bg-gradient-3 text-white shadow p-5 text-center mb-5">-->
+<!--                    <p class="mb-0 font-weight-bold text-uppercase">We'll open in</p>-->
+<!--                    <div id="clock" class="countdown pt-4"></div>-->
+<!--                </div>-->
+
+                <!-- Countdown 4-->
+                <div class="rounded bg-gradient-4 text-white shadow p-5 text-center mb-5">
+                    <p class="mb-0 font-weight-bold text-uppercase">The meeting is coming!</p>
+                    <div id="clock-c" class="countdown py-4"><span class="h1 font-weight-bold">14</span> Day<span class="h1 font-weight-bold">23</span> Hr<span class="h1 font-weight-bold">58</span> Min<span class="h1 font-weight-bold">16</span> Sec</div>
+
+                    <!-- Call to actions -->
+<!--                    <ul class="list-inline">-->
+<!--                        <li class="list-inline-item pt-2">-->
+<!--                            <button id="btn-reset" type="button" class="btn btn-demo"><i class="glyphicon glyphicon-repeat"></i>Reset</button>-->
+<!--                        </li>-->
+<!--                        <li class="list-inline-item pt-2">-->
+<!--                            <button id="btn-pause" type="button" class="btn btn-demo"><i class="glyphicon glyphicon-repeat"></i>Pause</button>-->
+<!--                        </li>-->
+<!--                        <li class="list-inline-item pt-2">-->
+<!--                            <button id="btn-resume" type="button" class="btn btn-demo"><i class="glyphicon glyphicon-repeat"></i>Resume</button>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.2/lib/draggable.min.js"></script>
+<script id="rendered-js">
+    let myVue = new Vue({
+        el: '#app',
+        data: {
+            coloredCards: [
+                'rgb(0,175,100)',
+                'rgb(0,175,125)',
+                'rgb(0,175,150)',
+                'rgb(0,175,175)',
+                'rgb(0,175,200)',
+                'rgb(0,175,225)',
+                'rgb(0,175,250)'],
+
+            weeklyTodos: {
+                "monday": [{
+                    todo: 'Clean bedroom',
+                    color: '#ef9a9a' },
+                    {
+                        todo: 'clean living room',
+                        color: '#f48fb1' }],
+
+                "tuesday": [{
+                    todo: 'Clean kitchen',
+                    color: '#ce93d8' },
+                    {
+                        todo: 'Take out trash',
+                        color: '#90caf9' },
+                    {
+                        todo: 'Try out cake recipe',
+                        color: '#80deea' }],
+
+                "wednesday": [],
+
+                "thursday": [{
+                    todo: 'Get done homework',
+                    color: '#80cbc4' }],
+
+                "friday": [{
+                    todo: 'Learn for maths',
+                    color: '#a5d6a7' },
+                    {
+                        todo: 'Learn for chemistry',
+                        color: '#c5e1a5' }],
+
+                "saturday": [{
+                    todo: 'Do this',
+                    color: '#e6ee9c' },
+                    {
+                        todo: 'Do that',
+                        color: '#ffe082' },
+                    {
+                        todo: 'Do whatever you said',
+                        color: '#ffcc80' }],
+
+                "sunday": [{
+                    todo: 'Do nothing!',
+                    color: '#ffab91' }] } } });
+
+
+
+
+
+    const swappable = new Draggable.Swappable(
+        document.querySelectorAll('[swappable]'), {
+            draggable: '[swapItem]',
+            delay: 0 });
+
+
+    swappable.on('drag:start', () => {
+        console.log('drag:start');
+    });
+    swappable.on('swappable:swapped', () => {
+        console.log('drag:swapped');
+    });
+    swappable.on('drag:stop', () => {
+        console.log('drag:stop');
+    });
+    swappable.on('drag:move', () => {
+        console.log('drag:move');
+    });
+
+    const sortable = new Draggable.Sortable(
+        document.querySelectorAll('[sortable]'), {
+            draggable: '[sortItem]',
+            delay: 0 });
+
+
+    sortable.on('drag:start', () => {
+        console.log('drag:start');
+    });
+    sortable.on('drag:stop', () => {
+        console.log('drag:stop');
+    });
+    //# sourceURL=pen.js
+</script>
+
+<script type="text/javascript">//<![CDATA[
+
+
+$(function () {
+
+
+    /* =========================================
+        COUNTDOWN 1
+     ========================================= */
+    $('#clock').countdown('2021/1/10').on('update.countdown', function(event) {
+        var $this = $(this).html(event.strftime(''
+            + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+            + '<span class="h1 font-weight-bold">%H</span> Hr'
+            + '<span class="h1 font-weight-bold">%M</span> Min'
+            + '<span class="h1 font-weight-bold">%S</span> Sec'));
+    });
+
+    /* =========================================
+        COUNTDOWN 2
+     ========================================= */
+    $('#clock-a').countdown('2021/1/10').on('update.countdown', function(event) {
+        var $this = $(this).html(event.strftime(''
+            + '<span class="h1 font-weight-bold">%w</span> week%!w'
+            + '<span class="h1 font-weight-bold">%D</span> Days'));
+    });
+
+    /* =========================================
+        COUNTDOWN 3
+     ========================================= */
+    $('#clock-b').countdown('2021/1/1').on('update.countdown', function(event) {
+        var $this = $(this).html(event.strftime(''
+            + '<div class="holder m-2"><span class="h1 font-weight-bold">%D</span> Day%!d</div>'
+            + '<div class="holder m-2"><span class="h1 font-weight-bold">%H</span> Hr</div>'
+            + '<div class="holder m-2"><span class="h1 font-weight-bold">%M</span> Min</div>'
+            + '<div class="holder m-2"><span class="h1 font-weight-bold">%S</span> Sec</div>'));
+    });
+
+
+    /* =========================================
+        COUNTDOWN 4
+     ========================================= */
+    function get15dayFromNow() {
+        return new Date(new Date().valueOf() + 15 * 24 * 60 * 60 * 1000);
+    }
+
+    $('#clock-c').countdown(get15dayFromNow(), function(event) {
+        var $this = $(this).html(event.strftime(''
+            + '<span class="h1 font-weight-bold">%D</span> Day%!d'
+            + '<span class="h1 font-weight-bold">%H</span> Hr'
+            + '<span class="h1 font-weight-bold">%M</span> Min'
+            + '<span class="h1 font-weight-bold">%S</span> Sec'));
+    });
+
+    /* =========================================
+        CALL TO ACTIONS FOR COUNTDOWN 4
+     ========================================= */
+    $('#btn-reset').click(function() {
+        $('#clock-c').countdown(get15dayFromNow());
+    });
+    $('#btn-pause').click(function() {
+        $('#clock-c').countdown('pause');
+    });
+    $('#btn-resume').click(function() {
+        $('#clock-c').countdown('resume');
+    });
+
+});
+
+
+
+//]]></script>
+
+<script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+        window.parent.parent.postMessage(["resultsFrame", {
+            height: document.body.getBoundingClientRect().height,
+            slug: "0myn62as"
+        }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+</script>
+
+<script>
+    let allLines = []
+
+    window.addEventListener("message", (message) => {
+        if (message.data.console){
+            let insert = document.querySelector("#insert")
+            allLines.push(message.data.console.payload)
+            insert.innerHTML = allLines.join(";\r")
+
+            let result = eval.call(null, message.data.console.payload)
+            if (result !== undefined){
+                console.log(result)
+            }
+        }
+    })
+</script>
+
+
+
+</body></html>
